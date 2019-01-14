@@ -1,0 +1,96 @@
+#!/bin/bash
+####
+#### Copyright (C) 2018  wuseman <wuseman@nr1.nu> - All Rights Reserved
+#### Ascii made by TISSUE.
+#### Created: 12/12/2018
+#### Usage: ./emagnet -option
+####
+
+
+#########################################
+############# SOURCE CODE ###############
+#########################################
+##### EMAGNET WAS FOUNDED BY WUSEMAN ####
+#########################################
+################ 2o18 ###################
+#########################################
+####                                 ####
+#### EMAGNET SOURCE CODE BEGINS HERE ####
+#### FEEL FREE TO USE AND PLAY WITH  ####
+#### EMAGNET AS YOU WISH ASLONG AS   ####
+#### ORIGIN AUTHOR WILL BE MENTIONED ####
+####                                 ####
+#########################################
+#########################################
+
+
+
+
+set -e
+
+if [[ $EUID -gt "0" ]]; then printf "Root privileges is required for this tool.\n"; exit 0;fi
+if [[ ! -f /etc/emagnet.conf ]]; then printf "Error: /etc/emagnet.conf is required, run emagnet-setup.sh for generate emagnet.conf\n"; exit 0;fi
+source .scripts/emagnet-banner.sh
+source /etc/emagnet.conf
+if [[ ! -d $EMAGNETHOME ]]; then mkdir -p $EMAGNETHOME &> /dev/null; fi;if [[ ! -d $EMAGNETDB ]]; then mkdir -p $EMAGNETDB &> /dev/null; fi; if [[ ! -d $EMAGNETTEMP ]]; then mkdir -p $EMAGNETTEMP &> /dev/null; fi
+if [[ ! -d $EMAGNETCRAP ]]; then mkdir -p $EMAGNETCRAP &> /dev/null; fi; if [[ ! -d $EMAGNETALL ]]; then mkdir -p $EMAGNETALL &> /dev/null; fi; if [[ ! -d $LOGS ]]; then mkdir -p $LOGS &> /dev/null; fi
+if [[ ! -d $EMAGNETCLONE ]]; then mkdir -p $EMAGNETCLONE &> /dev/null; fi;if [[ ! -d $EMAGNETMIRROR ]]; then mkdir -p $EMAGNETMIRROR &> /dev/null; fi; if [[ ! -d $EMAGNETBACKUP ]]; then mkdir -p $EMAGNETBACKUP &> /dev/null; fi
+if [[ ! -d $EMAGNETSPIDER ]]; then mkdir -p $EMAGNETSPIDER &> /dev/null; fi
+if [[ -z $MYIP ]]; then banner;echo -e "Add your IP to settings to be safe since we do not want to use our own ip..\n";echo "\[$(date +%d/%m/%Y\ -\ %H:%M)\]: $(whoami) - Aborted for safety, don't use your own IP" >> $LOGS2/emagnet.log;exit 1; fi
+if [[ "$(curl -s https://nr1.nu/ip/ | sed -n '27p')" = "$MYIP" ]];then banner;    echo "          Use TOR or a VPN for your own safety. Aborted."; echo "";    exit 1;fi
+source .scripts/emagnet-requirements.sh;checkwget;checklynx;checkcurl;checknetcat;checkscreen
+
+help() {
+banner;
+source .scripts/emagnet-help.sh;
+help
+}
+
+countdown() {
+wait_time=$TIME ;temp_cnt=${wait_time};while [[ ${temp_cnt} -gt 0 ]]; do    printf "\r         I'll will find you <-%2d -> It's a matter of time" ${temp_cnt};sleep 1;((temp_cnt--));done;echo ""  
+}
+
+emagnet() {
+source .scripts/emagnet-main.sh;emagnet
+}
+
+spider() {
+source .scripts/emagnet-spider.sh;spider
+}
+
+mirrorwww() {
+source .scripts/emagnet-mirror.sh;mirrorwww
+}
+
+stopwhenfound() {
+for (( ; ; )); do clear;banner;countdown;clear;banner;echo "                        Gathering Data.";sleep 1;echo "                          Please Wait";clear;banner;emagnet;sleep 2;done;emagnet
+}
+
+clonegit() {
+source .scripts/emagnet-clone.sh; clonegit
+}
+
+if [[ -z $1 ]]; then help; exit 0; fi
+
+while getopts ":bcfmnehHpsvu" getopt; do
+  case $getopt in
+       b) bash .scripts/emagnet-backup.sh ;;
+       c) clonegit ;;
+       e) stopwhenfound ;;
+       f) bash /var/git/emagnet/.scripts/emagnet-f.sh ;;
+       n) checknetcat; nc nr1.nu 81 ;;
+       H) bash .scripts/emagnet-hidden.sh &
+          echo "Emagnet is now running in background. Use pkill -9 emagnet to stop emagnet"  ;;
+       m) mirrorwww ;;
+       h) help ;;
+       p) banner; bash $(dirname -- "$0")/.scripts/emagnet-ping.sh ;;
+       s) spider ;;
+       v) banner; printf "                     Emagnet Version: $VERSION\n\n" ;;
+       \?) echo "No such option, try ./emagnet -h" ;;
+  esac
+done
+
+
+
+
+
