@@ -1,4 +1,4 @@
-![Screenshot](https://nr1.nu/archive/images/emagnet.png)
+![Screenshot](_/emagnet-banner.png)
 
 ## _"I'll will find you, it's just a matter of time"_
 
