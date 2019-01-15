@@ -17,6 +17,9 @@ Emagnet is a very powerful tool for it's purpose wich is to capture email addres
 
 #### If you answered YES on all questions above you probably will enjoy emagnet.
 
+##### Here you can see a real example (for run emagnet in silent mode just change -e to -H)
+![Screenshot](_/emagnet-pastebin.gif)
+
 ##### The video below is the result after running emagnet in 7minutes and 32 seconds, let emagnet do the job for you in background. It's leaked emails + plain text password I searching for in the video mail:password. 
 
 ![Screenshot](_/emagnet-leakedpws.gif)
