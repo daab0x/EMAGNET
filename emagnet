@@ -40,7 +40,6 @@ if [[ ! -d $EMAGNETCRAP ]]; then mkdir -p $EMAGNETCRAP &> /dev/null;fi
 if [[ ! -d $EMAGNETALL ]]; then mkdir -p $EMAGNETALL &> /dev/null;fi
 if [[ ! -d $EMAGNETCLONE ]]; then mkdir -p $EMAGNETCLONE &> /dev/null;fi
 if [[ ! -d $EMAGNETMIRROR ]]; then mkdir -p $EMAGNETMIRROR &> /dev/null;fi
-if [[ ! -d $EMAGNETBACKUP ]]; then mkdir -p $EMAGNETBACKUP &> /dev/null;fi
 if [[ ! -d $EMAGNETSPIDER ]]; then mkdir -p $EMAGNETSPIDER &> /dev/null;fi
 if [[ ! -d $EMAGNETLOGS ]]; then mkdir -p $EMAGNETLOGS &> /dev/null; fi
 
