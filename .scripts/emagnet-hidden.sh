@@ -22,10 +22,14 @@
 #########################################
 #########################################
 
+mkdir -p /home/wuseman/www/emagnet/logs/
+mkdir -p /home/wuseman/www/emagnet/all-files
+mkdir -p /home/wuseman/www/emagnet/email-files
+source /etc/emagnet.conf
+
 echo "" >> $LOGS/pastebin-urls.txt
 echo URLS from: $(date +%d/%m/%Y\ -\ %H:%M) >> $LOGS/pastebin-urls.txt
 echo ================================= >> $LOGS/pastebin-urls.txt
-source /etc/emagnet.conf
 hidden() {
 lynx -dump $PASTEBIN | sed 's/com\//com\/raw\//g' | grep -o http.* | sed -n '7,14p' > /tmp/.pastebin
 cd $EMAGNETTEMP
@@ -40,7 +44,7 @@ if [[ -n $i ]]; then
    echo URLS from: $(date +%d/%m/%Y\ -\ %H:%M) >> $LOGS/pastebin-urls.txt
    cat /tmp/.pastebin >> $LOGS/pastebin-urls.txt
    rm /tmp/.pastebin
-   cp -nc $EMAGNETHOME/.temp/* $EMAGNETHOME/all-files
+   cp -n $EMAGNETHOME/.temp/* $EMAGNETHOME/all-files
    sleep 2
    exit 0
 else

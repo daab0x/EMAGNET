@@ -38,7 +38,7 @@ if [[ ! -d $EMAGNETCLONE ]]; then mkdir -p $EMAGNETCLONE &> /dev/null; fi;if [[ 
 if [[ ! -d $EMAGNETSPIDER ]]; then mkdir -p $EMAGNETSPIDER &> /dev/null; fi
 if [[ -z $MYIP ]]; then banner;echo -e "Add your IP to settings to be safe since we do not want to use our own ip..\n";echo "\[$(date +%d/%m/%Y\ -\ %H:%M)\]: $(whoami) - Aborted for safety, don't use your own IP" >> $LOGS2/emagnet.log;exit 1; fi
 if [[ "$(curl -s https://nr1.nu/ip/ | sed -n '27p')" = "$MYIP" ]];then banner;    echo "          Use TOR or a VPN for your own safety. Aborted."; echo "";    exit 1;fi
-source .scripts/emagnet-requirements.sh;checkwget;checklynx;checkcurl;checknetcat;checkscreen
+source .scripts/emagnet-requirements.sh;checkwget;checklynx;checkcurl
 
 help() {
 banner;
@@ -79,8 +79,7 @@ while getopts ":bcfmnehHpsvu" getopt; do
        e) stopwhenfound ;;
        f) bash /var/git/emagnet/.scripts/emagnet-f.sh ;;
        n) checknetcat; nc nr1.nu 81 ;;
-       H) bash .scripts/emagnet-hidden.sh &
-          echo "Emagnet is now running in background. Use pkill -9 emagnet to stop emagnet"  ;;
+       H) bash /var/git/emagnet/.scripts/emagnet-h.sh & ;;
        m) mirrorwww ;;
        h) help ;;
        p) banner; bash $(dirname -- "$0")/.scripts/emagnet-ping.sh ;;
