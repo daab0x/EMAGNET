@@ -4,6 +4,8 @@
 
 #### I cannot be responsible for the user's actions regardless of what damage a user can achieve with the information/data emagnet might collect for any user(s).All users who are using emagnet for gathering or store information/data is 100% responsible for their own actions, emagnet has been developed for a legal purpose.
 
+#### Upcomming in v1.5 - Auto brute force all accounts we gathering from uploads on pastebin and add all accounts that succeed to it´s own file, template in .scripts/emagnet-bruteforce.sh IS far away from complete, just uploaded the file temporary.
+
 ## README
 
 Emagnet is a very powerful tool for it's purpose wich is to capture email addresses and especially leaked databases upoloaded on pastebin since it's almost impossible to find them when they are out of latest top 10 list on https://pastebin.com. Either they have been deleted by pastebin's techs or the upload is just one in the crowd. To be honest it's easier to find a needle in a haystack then find outdated uploads on pastebin with the data we want to collect - Emagnet runs fine on all distros and even runs fine on windows aslong aslong the required packages is installed(curl, lynx and wget is required)
