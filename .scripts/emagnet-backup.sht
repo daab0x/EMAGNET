@@ -24,6 +24,13 @@
 
 
 source /etc/emagnet.conf
+EMAGNETBACKUP="dkfjafj"
+
+if [[ $EMAGNETBACKUP = "" ]]; then
+printf "You must set backup path before trying to backup emagnet\n"
+exit
+fi
+
 cd $EMAGNETHOME; cd ../
 printf "Co;mpressing emagnet (this might take a while)\n"
 tar cjf emagnet-$( echo $(date +%Y-%m-%d))-$RANDOM.tar.gz emagnet 2> /dev/null
