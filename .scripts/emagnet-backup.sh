@@ -22,9 +22,8 @@
 #########################################
 #########################################
 
-
-
 source /etc/emagnet.conf
+
 
 cd $EMAGNETHOME; cd ../
 printf "Compressing emagnet (this might take a while)\n"

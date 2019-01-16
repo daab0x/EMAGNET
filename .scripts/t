@@ -1,6 +1,0 @@
-echo "./emagnet -H" | pv -qL 10
-bash emagnet-hidden.sh 
-bash emagnet-hidden.sh 
-bash emagnet-hidden.sh 
-bash emagnet-hidden.sh 
-bash emagnet-hidden.sh 
